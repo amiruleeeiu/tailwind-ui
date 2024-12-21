@@ -1,42 +1,58 @@
 "use client";
 
 import Dropdown from "@/components/dropdown";
+import IconButton from "@/components/icon-button";
 import Pagination from "@/components/pagination";
+import Tabs from "@/components/tabs";
 import { useState } from "react";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export default function Home() {
   const [selectedValue, setSelectedValue] = useState("10");
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState("10");
+
   const dropdownItems = [
-    { label: "10 per page", value: "10" },
-    { label: "20 per page", value: "20" },
-    { label: "50 per page", value: "50" },
-    { label: "100 per page", value: "100" },
+    { label: "10", value: "10" },
+    { label: "20", value: "20" },
+    { label: "50", value: "50" },
+    { label: "100", value: "100" },
   ];
+
+  const onPageChange = (page: number) => {
+    setPage(page);
+  };
 
   return (
     <div className="m-12">
       <div className="p-8 space-y-4">
         <h2 className="text-lg font-semibold mb-4">Dropdown Examples</h2>
 
-        <div className="w-[300px] space-y-4">
+        <div className="w-[70px] space-y-4">
           <Dropdown
             items={dropdownItems}
             value={selectedValue}
             onChange={setSelectedValue}
             placeholder="Select items per page"
           />
-
-          <Dropdown
-            items={dropdownItems}
-            value={selectedValue}
-            onChange={setSelectedValue}
-            disabled
-          />
         </div>
       </div>
-      <h1>Hello world</h1>
-      <Pagination totalPages={5} currentPage={1} onPageChange={() => {}} />
+      <h2 className="text-lg font-semibold mb-4">Icon Button</h2>
+      <IconButton className="rounded-md">
+        <MdOutlineArrowForwardIos />
+      </IconButton>
+      <h1>Pagination</h1>
+      <Pagination
+        limit={limit}
+        setLimit={setLimit}
+        count={100}
+        totalPages={Math.ceil(100 / Number(limit))}
+        currentPage={page}
+        onPageChange={onPageChange}
+      />
+      <h2 className="text-lg font-semibold mb-4">Tabs</h2>
+      <Tabs />
     </div>
   );
 }

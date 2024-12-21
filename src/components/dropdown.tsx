@@ -1,3 +1,4 @@
+import cn from "@/utils/cn";
 import { Check } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -12,10 +13,10 @@ interface DropdownProps {
   onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
-  className?: string;
   width?: "auto" | "full";
-  variant?: "outline" | "filled";
+  variant?: "outline" | "filled" | "none";
   size?: "sm" | "md" | "lg";
+  className?: string;
 }
 
 const Dropdown = ({
@@ -25,7 +26,7 @@ const Dropdown = ({
   placeholder = "Select option",
   disabled = false,
   className = "",
-  width = "auto",
+  width = "full",
   variant = "outline",
   size = "md",
 }: DropdownProps) => {
@@ -75,33 +76,36 @@ const Dropdown = ({
   const variantStyles = {
     outline: "border border-gray-300 bg-white hover:border-gray-400",
     filled: "bg-gray-100 hover:bg-gray-200",
+    none: "hover:bg-gray-50 duration-200 ease-in-out",
   };
 
   return (
     <div
       ref={dropdownRef}
-      className={`relative ${
-        width === "full" ? "w-full" : "w-auto"
-      } ${className}`}
+      className={cn(
+        `relative ${width === "full" ? "w-full" : "w-auto"}`,
+        className
+      )}
     >
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={`
+        className={cn(`
           flex items-center justify-between rounded-md
           ${sizeStyles[size]}
           ${variantStyles[variant]}
           ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
-          ${width === "full" ? "w-full" : "min-w-[200px]"}
+          ${width === "full" ? "w-full" : "min-w-[60px]"}
           transition-all duration-200 ease-in-out
-        `}
+        `)}
       >
         <span className={!selectedItem ? "text-gray-500" : "text-gray-900"}>
           {selectedItem ? selectedItem.label : placeholder}
         </span>
         <IoMdArrowDropdown
-          className={`w-4 h-4 ml-2 transition-transform duration-200 
-            ${isOpen ? "transform rotate-180" : ""}`}
+          className={`transition-transform duration-200 ease-in-out ${
+            isOpen ? "rotate-180" : ""
+          }`}
         />
       </button>
 
@@ -116,6 +120,7 @@ const Dropdown = ({
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 pointer-events-none"
           }
+          
         `}
       >
         <div className="py-1 max-h-60 overflow-auto">
