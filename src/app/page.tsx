@@ -1,10 +1,12 @@
 "use client";
 
+import Card from "@/components/card";
 import Dropdown from "@/components/dropdown";
 import IconButton from "@/components/icon-button";
 import Pagination from "@/components/pagination";
 import Tabs from "@/components/tabs";
 import { useState } from "react";
+import { FaPlus } from "react-icons/fa6";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export default function Home() {
@@ -25,34 +27,84 @@ export default function Home() {
   };
 
   return (
-    <div className="m-12">
-      <div className="p-8 space-y-4">
-        <h2 className="text-lg font-semibold mb-4">Dropdown Examples</h2>
-
-        <div className="w-[70px] space-y-4">
-          <Dropdown
-            items={dropdownItems}
-            value={selectedValue}
-            onChange={setSelectedValue}
-            placeholder="Select items per page"
-          />
-        </div>
+    <div className="p-12 bg-gray-100">
+      <div className="grid grid-cols-3 gap-4">
+        <Card>
+          <Card.Header>
+            <Card.Title>Your Title</Card.Title>
+          </Card.Header>
+          <Card.Body>Your content here</Card.Body>
+          <Card.Footer>Footer content</Card.Footer>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Your Title</Card.Title>
+          </Card.Header>
+          <Card.Body>Your content here</Card.Body>
+          <Card.Footer>Footer content</Card.Footer>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Your Title</Card.Title>
+          </Card.Header>
+          <Card.Body>Your content here</Card.Body>
+          <Card.Footer>Footer content</Card.Footer>
+        </Card>
       </div>
-      <h2 className="text-lg font-semibold mb-4">Icon Button</h2>
-      <IconButton className="rounded-md">
-        <MdOutlineArrowForwardIos />
-      </IconButton>
-      <h1>Pagination</h1>
-      <Pagination
-        limit={limit}
-        setLimit={setLimit}
-        count={100}
-        totalPages={Math.ceil(100 / Number(limit))}
-        currentPage={page}
-        onPageChange={onPageChange}
-      />
-      <h2 className="text-lg font-semibold mb-4">Tabs</h2>
-      <Tabs />
+
+      <div className="grid grid-cols-1 gap-4 mt-4">
+        <Card>
+          <Card.Header>
+            <Card.Title>Dropdown</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Dropdown
+              items={dropdownItems}
+              value={selectedValue}
+              onChange={setSelectedValue}
+              placeholder="Select items per page"
+            />
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Icon Button</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="flex flex-wrap space-x-2">
+              <IconButton className="rounded-md">
+                <MdOutlineArrowForwardIos />
+              </IconButton>
+              <IconButton>
+                <FaPlus />
+              </IconButton>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Pagination</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Pagination
+              limit={limit}
+              setLimit={setLimit}
+              count={100}
+              totalPages={Math.ceil(100 / Number(limit))}
+              currentPage={page}
+              onPageChange={onPageChange}
+            />
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Tabs</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Tabs />
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   );
 }

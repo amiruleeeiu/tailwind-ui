@@ -40,7 +40,7 @@ const Pagination: FC<PaginationProps> = ({
   };
 
   return (
-    <div className="flex items-center space-x-8 font-medium text-gray-500">
+    <div className="flex items-center space-x-8 font-medium text-gray-700">
       <div>Rows per page:</div>
       <Dropdown
         items={dropdownItems}
@@ -63,6 +63,7 @@ const Pagination: FC<PaginationProps> = ({
           <IconButton
             onClick={() => onPageChange(1)}
             disabled={currentPage === 1}
+            className="bg-transparent hover:bg-gray-100"
           >
             <MdOutlineFirstPage className="w-6 h-6" />
           </IconButton>
@@ -70,6 +71,7 @@ const Pagination: FC<PaginationProps> = ({
           <IconButton
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}
+            className="bg-transparent hover:bg-gray-100"
           >
             <MdOutlineArrowBackIos />
           </IconButton>
@@ -79,12 +81,14 @@ const Pagination: FC<PaginationProps> = ({
           <IconButton
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
+            className="bg-transparent hover:bg-gray-100"
           >
             <MdOutlineArrowForwardIos />
           </IconButton>
           <IconButton
             onClick={() => onPageChange(totalPages)}
             disabled={currentPage === totalPages}
+            className="bg-transparent hover:bg-gray-100"
           >
             <MdOutlineLastPage className="h-6 w-6" />
           </IconButton>
