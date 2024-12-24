@@ -1,9 +1,13 @@
 "use client";
 
+import Badge from "@/components/Badge";
+import Button from "@/components/Button";
 import Card from "@/components/card";
 import Dropdown from "@/components/dropdown";
 import IconButton from "@/components/icon-button";
 import Pagination from "@/components/pagination";
+import Popover from "@/components/Popover";
+import Spinner from "@/components/Spinner";
 import Tabs from "@/components/tabs";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
@@ -45,14 +49,23 @@ export default function Home() {
         </Card>
         <Card>
           <Card.Header>
-            <Card.Title>Your Title</Card.Title>
+            <Card.Title>Popover</Card.Title>
           </Card.Header>
-          <Card.Body>Your content here</Card.Body>
-          <Card.Footer>Footer content</Card.Footer>
+          <Card.Body>
+            <Popover />
+          </Card.Body>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 gap-4 mt-4">
+        <Card>
+          <Card.Header>
+            <Card.Title>Spinner</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Spinner />
+          </Card.Body>
+        </Card>
         <Card>
           <Card.Header>
             <Card.Title>Dropdown</Card.Title>
@@ -68,6 +81,67 @@ export default function Home() {
         </Card>
         <Card>
           <Card.Header>
+            <Card.Title>Button</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="grid grid-cols-4 gap-4">
+              <Card>
+                <Card.Header>
+                  <Card.Title>Default</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <div className="flex flex-wrap space-2 gap-3">
+                    <Button color="default">Default</Button>
+                    <Button>Primary</Button>
+                    <Button color="error">Error</Button>
+                    <Button color="success">Success</Button>
+                    <Button color="warning">Warning</Button>
+                  </div>
+                </Card.Body>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Card.Title>Disabled</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <div className="flex flex-wrap space-x-2">
+                    <Button disabled>Disabled</Button>
+                  </div>
+                </Card.Body>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Card.Title>Loading</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <div className="flex flex-wrap space-x-2">
+                    <Button isLoading loadingText="Submitting...">
+                      Submit
+                    </Button>
+                    <Button isLoading={false}>Submit</Button>
+                  </div>
+                </Card.Body>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Card.Title>Custom Tailwind Class</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <div className="flex flex-wrap space-x-2">
+                    <Button className="border-2 border-blue-300 bg-white hover:bg-blue-500 hover:text-white hover:border-none-2 hover:border-transparent text-gray-700">
+                      Submit
+                    </Button>
+                    <Button className="bg-violet-600 hover:bg-violet-700">
+                      Submit
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
             <Card.Title>Icon Button</Card.Title>
           </Card.Header>
           <Card.Body>
@@ -78,6 +152,19 @@ export default function Home() {
               <IconButton>
                 <FaPlus />
               </IconButton>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Badge</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="flex flex-wrap space-x-2">
+              <Badge>Active</Badge>
+              <Badge color="success">Active</Badge>
+              <Badge color="error">Inactive</Badge>
+              <Badge color="warning">Inactive</Badge>
             </div>
           </Card.Body>
         </Card>
