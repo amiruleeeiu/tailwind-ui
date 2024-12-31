@@ -1,10 +1,15 @@
 "use client";
 
+import Accordion from "@/components/Accordion/Accordion";
+import AccordionItem from "@/components/Accordion/AccordionItem";
+import AccordionItemContent from "@/components/Accordion/AccordionItemContent";
+import AccordionItemTrigger from "@/components/Accordion/AccordionItemTrigger";
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import Card from "@/components/card";
 import Dropdown from "@/components/dropdown";
 import IconButton from "@/components/icon-button";
+import Modal from "@/components/Modal/Modal";
 import Pagination from "@/components/pagination";
 import Popover from "@/components/Popover";
 import Spinner from "@/components/Spinner";
@@ -12,6 +17,35 @@ import Tabs from "@/components/tabs";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+
+const accordionItems = [
+  {
+    value: "1",
+    title: "Accordion Item 1",
+    content: (
+      <div className="bg-gray-100 p-3">
+        <Card>
+          <Card.Header>
+            <Card.Title>Your Title</Card.Title>
+          </Card.Header>
+          <Card.Body>Your content here</Card.Body>
+          <Card.Footer>Footer content</Card.Footer>
+        </Card>
+      </div>
+    ),
+  },
+  {
+    value: "2",
+    title: "Accordion Item 2",
+    content: "Accordion Item 2 Content",
+    disabled: true,
+  },
+  {
+    value: "3",
+    title: "Accordion Item 3",
+    content: "Accordion Item 3 Content",
+  },
+];
 
 export default function Home() {
   const [selectedValue, setSelectedValue] = useState("10");
@@ -55,9 +89,50 @@ export default function Home() {
             <Popover />
           </Card.Body>
         </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Modal</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Modal />
+          </Card.Body>
+        </Card>
       </div>
 
       <div className="grid grid-cols-1 gap-4 mt-4">
+        <Card>
+          <Card.Header>
+            <Card.Title>Accordion</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="grid grid-cols-1 gap-2">
+              <Accordion defaultValue={["1"]}>
+                {accordionItems.map((item) => (
+                  <AccordionItem key={item?.value} value={item.value}>
+                    <AccordionItemTrigger>{item.title}</AccordionItemTrigger>
+                    <AccordionItemContent>{item.content}</AccordionItemContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+            <div className="grid grid-cols-1 gap-2">
+              <h1 className="my-5">Collapsable</h1>
+              <Accordion defaultValue={[]} collapsable>
+                {accordionItems.map((item) => (
+                  <AccordionItem key={item?.value} value={item.value}>
+                    <AccordionItemTrigger
+                      disabled={item.disabled}
+                      rightIcon={<MdOutlineArrowForwardIos />}
+                    >
+                      {item.title}
+                    </AccordionItemTrigger>
+                    <AccordionItemContent>{item.content}</AccordionItemContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </Card.Body>
+        </Card>
         <Card>
           <Card.Header>
             <Card.Title>Spinner</Card.Title>
