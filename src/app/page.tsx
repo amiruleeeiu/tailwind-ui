@@ -157,7 +157,11 @@ export default function Home() {
             <Card.Title>Toast</Card.Title>
           </Card.Header>
           <Card.Body>
-            <Toast />
+            <div className="grid grid-cols-1 gap-1">
+              <Toast />
+              <Toast type="error" />
+              <Toast type="warning" />
+            </div>
           </Card.Body>
         </Card>
       </div>

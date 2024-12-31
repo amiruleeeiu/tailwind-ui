@@ -1,17 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import cn from "@/utils/cn";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiCheckCircle } from "react-icons/fi";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "./Button";
 
-function Toast({ duration = 3000 }: Readonly<{ duration?: number }>) {
+interface ToastProps {
+  duration?: number;
+  type?: "success" | "error" | "warning";
+}
+
+function Toast({ duration = 3000, type = "success" }: Readonly<ToastProps>) {
   const time = duration / 100;
   const [open, setOpen] = useState(false);
 
-  const toastRef = useRef<HTMLDivElement>(null);
-
   const [width, setWidth] = useState(100);
+
+  const colorClass = {
+    success: "bg-green-600",
+    error: "bg-red-600",
+    warning: "bg-orange-600",
+  };
+
+  const progressClass = {
+    success: "bg-green-300",
+    error: "bg-red-300",
+    warning: "bg-orange-300",
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,35 +59,20 @@ function Toast({ duration = 3000 }: Readonly<{ duration?: number }>) {
     setOpen(false);
   };
 
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (
-      toastRef.current &&
-      !toastRef.current.contains(event.target as Node) &&
-      open
-    ) {
-      setOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleOutsideClick);
-    return () => document.removeEventListener("click", handleOutsideClick);
-  }, [open]);
-
   return (
     <div>
       <Button onClick={() => setOpen(true)}>Click me</Button>
       <div
-        ref={toastRef}
         className={cn(
-          "fixed top-0 right-0  m-4 bg-green-600 text-white rounded z-50",
-          { hidden: !open }
+          "fixed top-0 right-0  m-4  text-white rounded z-50",
+          { hidden: !open },
+          colorClass[type]
         )}
       >
         <div className="flex gap-2 p-4">
           <div className="flex items-center gap-2">
             <FiCheckCircle size={20} />
-            <p className=" font-medium tracking-wide ">
+            <p className=" font-medium tracking-wide opacity-90">
               Client Successfully updated
             </p>
           </div>
@@ -84,9 +84,11 @@ function Toast({ duration = 3000 }: Readonly<{ duration?: number }>) {
             <IoCloseSharp size={20} />
           </button>
         </div>
-        <div className="w-full bg-green-600 rounded h-1">
+        <div
+          className={cn("w-full bg-green-600 rounded h-1", colorClass[type])}
+        >
           <div
-            className="bg-green-300 h-1 rounded"
+            className={cn("h-1 rounded", progressClass[type])}
             style={{
               width: `${width}%`,
               transition: "width 0.001s ease-in-out",
