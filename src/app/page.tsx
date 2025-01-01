@@ -7,6 +7,7 @@ import AccordionItemTrigger from "@/components/Accordion/AccordionItemTrigger";
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import Card from "@/components/card";
+import Checkbox from "@/components/Checkbox";
 import Dropdown from "@/components/dropdown";
 import IconButton from "@/components/icon-button";
 import Modal, {
@@ -17,7 +18,9 @@ import Modal, {
 import Pagination from "@/components/pagination";
 import Popover from "@/components/Popover";
 import Progressbar from "@/components/Progressbar";
+import RadioGroup from "@/components/Radio/RadioGroup";
 import Spinner from "@/components/Spinner";
+import TableComponent from "@/components/Table/TableComponent";
 import Tabs from "@/components/tabs";
 import Toast from "@/components/Toast";
 import { useState } from "react";
@@ -157,16 +160,35 @@ export default function Home() {
             <Card.Title>Toast</Card.Title>
           </Card.Header>
           <Card.Body>
-            <div className="grid grid-cols-1 gap-1">
+            <div className="flex flex-wrap space-x-2">
               <Toast />
               <Toast type="error" />
               <Toast type="warning" />
+              <Checkbox label="Phone" name="phone" />
+              <Checkbox label="Email" name="email" />
+
+              <div>
+                <RadioGroup
+                  options={[
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
+                  ]}
+                />
+              </div>
             </div>
           </Card.Body>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 gap-4 mt-4">
+        <Card>
+          <Card.Header>
+            <Card.Title>Table</Card.Title>
+          </Card.Header>
+          <Card.Body className="">
+            <TableComponent />
+          </Card.Body>
+        </Card>
         <Card>
           <Card.Header>
             <Card.Title>Accordion</Card.Title>
