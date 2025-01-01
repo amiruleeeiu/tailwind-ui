@@ -15,7 +15,7 @@ function Modal({
   isOpen,
   onClose,
 }: Readonly<{
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   children: React.ReactNode;
   outsideClick?: boolean;
   isOpen: boolean;
@@ -23,10 +23,12 @@ function Modal({
 }>) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const sizeClass = {
-    sm: "w-1/3 h-1/4",
-    md: "w-1/2 h-1/2",
-    lg: "w-4/5 h-4/5",
+  const sizeClasses = {
+    xs: "max-w-lg h-36",
+    sm: "max-w-xl h-96",
+    md: "max-w-3xl h-[80vh]",
+    lg: "max-w-5xl h-[80vh]",
+    xl: "max-w-7xl h-[90vh]",
   };
 
   console.log(modalRef?.current);
@@ -55,12 +57,24 @@ function Modal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // Disable body scroll
+    } else {
+      document.body.style.overflow = "auto"; // Re-enable body scroll
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // Cleanup on unmount
+    };
+  }, [isOpen]);
+
   return (
     <div>
       <ModalContext.Provider value={{ isOpen, onClose }}>
         <div
           className={cn(
-            "fixed h-screen w-screen hidden bg-gray-600 bg-opacity-50 inset-0 z-50",
+            "fixed h-screen w-screen hidden bg-black bg-opacity-60 inset-0 z-50",
             { "flex justify-center items-center": isOpen }
           )}
         >
@@ -68,7 +82,7 @@ function Modal({
             ref={modalRef}
             className={cn(
               "bg-white shadow rounded w-full h-full flex flex-col justify-between",
-              sizeClass[size]
+              sizeClasses[size]
             )}
           >
             {children}
@@ -87,8 +101,8 @@ export const ModalHeader = ({ children }: ModalHeaderProps) => {
     <div className="flex justify-between items-center px-3 py-2 border-b">
       <div className="text-lg font-semibold text-gray-700">{children}</div>
       <div>
-        <IconButton onClick={onClose}>
-          <IoCloseSharp size={20} />
+        <IconButton onClick={onClose} className="bg-white text-gray-700">
+          <IoCloseSharp size={26} />
         </IconButton>
       </div>
     </div>

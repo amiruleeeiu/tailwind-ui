@@ -16,6 +16,7 @@ import Pagination from "@/components/pagination";
 import Popover from "@/components/Popover";
 import Progressbar from "@/components/Progressbar";
 import RadioGroup from "@/components/Radio/RadioGroup";
+import SmallModal from "@/components/SmallModal";
 import Spinner from "@/components/Spinner";
 import TableComponent from "@/components/Table/TableComponent";
 import Tabs from "@/components/tabs";
@@ -135,9 +136,11 @@ export default function Home() {
           <Card.Body className="flex flex-wrap gap-2">
             <ModalComponent>Open</ModalComponent>
             <ModalComponent outsideClick>Outside Close</ModalComponent>
+            <SmallModal/>
             <ModalComponent size="sm">sm</ModalComponent>
             <ModalComponent size="md">md</ModalComponent>
             <ModalComponent size="lg">lg</ModalComponent>
+            <ModalComponent size="xl">xl</ModalComponent>
           </Card.Body>
         </Card>
         <Card>

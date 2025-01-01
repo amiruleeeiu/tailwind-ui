@@ -9,7 +9,7 @@ function ModalComponent({
 }: {
   children: React.ReactNode;
   outsideClick?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
 }) {
   const { value, setTrue, setFalse } = useBoolean();
   return (
@@ -21,7 +21,7 @@ function ModalComponent({
         onClose={setFalse}
         isOpen={value}
       >
-        <ModalHeader>Modal Title</ModalHeader>
+        {size !== "xs" && <ModalHeader>Modal Title</ModalHeader>}
         <ModalBody>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
           atque placeat iste mollitia a excepturi labore in aperiam magnam.
@@ -47,16 +47,18 @@ function ModalComponent({
           suscipit facilis, dignissimos non et repellendus nostrum consequuntur
           harum.
         </ModalBody>
-        <ModalFooter>
-          {({ onClose }) => (
-            <>
-              <Button onClick={onClose} color="default">
-                Cancel
-              </Button>
-              <Button onClick={() => console.log("clicked")}>Submit</Button>
-            </>
-          )}
-        </ModalFooter>
+        {size !== "xs" && (
+          <ModalFooter>
+            {({ onClose }) => (
+              <>
+                <Button onClick={onClose} color="default">
+                  Cancel
+                </Button>
+                <Button onClick={() => console.log("clicked")}>Submit</Button>
+              </>
+            )}
+          </ModalFooter>
+        )}
       </Modal>
     </div>
   );
