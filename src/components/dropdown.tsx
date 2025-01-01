@@ -91,7 +91,7 @@ const Dropdown = ({
         onClick={() => !disabled && setIsOpen(!isOpen)}
         className={cn(
           `
-          flex items-center justify-between border rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+          flex items-center justify-between border rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500 duration-200
           ${sizeStyles[size]}
           
           ${width === "full" ? "w-full" : "min-w-[60px]"}

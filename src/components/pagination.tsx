@@ -73,7 +73,7 @@ const Pagination: FC<PaginationProps> = ({
             disabled={currentPage === 1}
             className="bg-transparent hover:bg-gray-100"
           >
-            <MdOutlineArrowBackIos size={14}/>
+            <MdOutlineArrowBackIos size={14} />
           </IconButton>
         </div>
 
@@ -83,7 +83,7 @@ const Pagination: FC<PaginationProps> = ({
             disabled={currentPage === totalPages}
             className="bg-transparent hover:bg-gray-100"
           >
-            <MdOutlineArrowForwardIos size={14}/>
+            <MdOutlineArrowForwardIos size={14} />
           </IconButton>
           <IconButton
             onClick={() => onPageChange(totalPages)}

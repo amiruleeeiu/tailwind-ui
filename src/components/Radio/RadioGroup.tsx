@@ -10,26 +10,18 @@ function RadioGroup(
 ) {
   const [checked, setChecked] = useState("");
 
-  const handleCheckboxChange = (value: string) => {
-    console.log(value);
-    // setChecked(value ? "" : value);
-  };
-
-  console.log(props.options);
-
-  console.log(checked);
-
   return (
-    <>
+    <div className="flex items-center space-x-3">
       {props.options.map((option) => {
         const isActive = checked === option.value;
         return (
           <div
             key={option.value}
-            className={cn("flex items-center space-x-1", props.className)}
+            className={cn("flex items-center space-x-2", props.className)}
           >
             <input
               {...props}
+              type="checkbox"
               id={option.value}
               checked={isActive}
               className="hidden"
@@ -61,7 +53,7 @@ function RadioGroup(
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 

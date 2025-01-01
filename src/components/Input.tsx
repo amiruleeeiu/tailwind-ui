@@ -12,7 +12,7 @@ function Input(
       </label>
       <input
         type="text"
-        className="my-2 border border-gray-300 py-2 px-3 rounded w-full outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 font-normal text-gray-800"
+        className="my-2 border border-gray-300 py-2 px-3 rounded w-full outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 duration-300 font-normal text-gray-800"
         {...props}
       />
     </div>

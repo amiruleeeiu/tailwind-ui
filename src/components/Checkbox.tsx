@@ -14,7 +14,7 @@ function Checkbox(
   };
 
   return (
-    <div className={cn("flex items-center space-x-1", props.className)}>
+    <div className={cn("flex items-center space-x-2", props.className)}>
       <input
         {...props}
         type="checkbox"

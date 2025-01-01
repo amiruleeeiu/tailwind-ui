@@ -78,7 +78,7 @@ export default function Home() {
             <Card.Title>Input fields</Card.Title>
           </Card.Header>
           <Card.Body>
-            <Input label="Input" />
+            <Input label="Input" placeholder="Input field" />
           </Card.Body>
         </Card>
         <Card>
@@ -91,6 +91,26 @@ export default function Home() {
             <div className="flex justify-end mt-2 gap-2">
               <Button color="default">Cancel</Button>
               <Button>Sign up</Button>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Toast</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="flex flex-wrap space-x-2">
+              <Checkbox label="Phone" name="phone" />
+              <Checkbox label="Email" name="email" />
+
+              <div>
+                <RadioGroup
+                  options={[
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
+                  ]}
+                />
+              </div>
             </div>
           </Card.Body>
         </Card>
@@ -137,17 +157,6 @@ export default function Home() {
               <Toast />
               <Toast type="error" />
               <Toast type="warning" />
-              <Checkbox label="Phone" name="phone" />
-              <Checkbox label="Email" name="email" />
-
-              <div>
-                <RadioGroup
-                  options={[
-                    { label: "Yes", value: "yes" },
-                    { label: "No", value: "no" },
-                  ]}
-                />
-              </div>
             </div>
           </Card.Body>
         </Card>
