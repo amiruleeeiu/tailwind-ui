@@ -64,17 +64,15 @@ function Toast({ duration = 3000, type = "success" }: Readonly<ToastProps>) {
       <Button onClick={() => setOpen(true)}>Click me</Button>
       <div
         className={cn(
-          "fixed top-0 right-0  m-4  text-white rounded z-50",
-          { hidden: !open },
+          "fixed top-0 right-0  text-white rounded z-50 transition-transform transform duration-200",
+          open ? "translate-x-0 m-3" : "translate-x-full my-3",
           colorClass[type]
         )}
       >
-        <div className="flex gap-2 p-4">
+        <div className="flex gap-2 p-4 ">
           <div className="flex items-center gap-2">
             <FiCheckCircle size={20} />
-            <p className=" font-medium tracking-wide opacity-90">
-              Client Successfully updated
-            </p>
+            <p className=" tracking-normal ">Client Successfully updated</p>
           </div>
 
           <button
