@@ -22,7 +22,7 @@ function Button({
   const successColor = "bg-green-600 hover:bg-green-700";
   const warningColor = "bg-orange-600 hover:bg-orange-700";
   const errorColor = "bg-red-600 hover:bg-red-700";
-  const defaultColor = "border bg-gray-100 hover:bg-gray-200 text-gray-700";
+  const defaultColor = "border border-gray-300 hover:bg-gray-100 text-gray-700";
 
   const classNames = {
     default: defaultColor,

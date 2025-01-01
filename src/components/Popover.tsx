@@ -15,15 +15,15 @@ function Popover() {
       }
     };
 
-    document.addEventListener("mouseout", handleClickOutside);
-    return () => document.removeEventListener("mouseout", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <div className="relative">
       <Button
-        onMouseOver={() => {
-          setIsShow(true);
+        onClick={() => {
+          setIsShow(!isShow);
         }}
       >
         Popover
@@ -31,7 +31,7 @@ function Popover() {
       {isShow && (
         <div
           ref={contentRef}
-          className="absolute bg-white border shadow-md p-4 mt-1 rounded"
+          className="absolute bg-white border shadow-md p-4 mt-1 rounded  z-10"
         >
           <p>
             Popover content Lorem ipsum dolor sit amet consectetur adipisicing

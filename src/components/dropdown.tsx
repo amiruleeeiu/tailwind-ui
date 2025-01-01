@@ -27,7 +27,6 @@ const Dropdown = ({
   disabled = false,
   className = "",
   width = "full",
-  variant = "outline",
   size = "md",
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,11 +72,11 @@ const Dropdown = ({
   };
 
   // Variant styles
-  const variantStyles = {
-    outline: "border border-gray-300 bg-white hover:border-gray-400",
-    filled: "bg-gray-100 hover:bg-gray-200",
-    none: "hover:bg-gray-50 duration-200 ease-in-out",
-  };
+  // const variantStyles = {
+  //   outline: "border border-gray-300 bg-white hover:border-gray-400",
+  //   filled: "bg-gray-100 hover:bg-gray-200",
+  //   none: "hover:bg-gray-50 duration-200 ease-in-out",
+  // };
 
   return (
     <div
@@ -90,14 +89,16 @@ const Dropdown = ({
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={cn(`
-          flex items-center justify-between rounded-md
+        className={cn(
+          `
+          flex items-center justify-between border rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500
           ${sizeStyles[size]}
-          ${variantStyles[variant]}
-          ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+          
           ${width === "full" ? "w-full" : "min-w-[60px]"}
           transition-all duration-200 ease-in-out
-        `)}
+        `,
+          { "opacity-50 cursor-not-allowed": disabled }
+        )}
       >
         <span className={!selectedItem ? "text-gray-500" : "text-gray-900"}>
           {selectedItem ? selectedItem.label : placeholder}
@@ -129,13 +130,13 @@ const Dropdown = ({
               key={item.value}
               onClick={() => handleSelect(item)}
               className={`
-                flex items-center w-full px-4 py-2 text-left
+                flex items-center w-full px-4 py-2 text-left cursor-default
                 ${
                   selectedItem?.value === item.value
                     ? "bg-blue-50 text-blue-700"
                     : "text-gray-700"
                 }
-                hover:bg-gray-100 transition-colors duration-150
+                hover:bg-gray-50 transition-colors duration-150
                 ${index !== items.length - 1 ? "border-b border-gray-100" : ""}
               `}
             >

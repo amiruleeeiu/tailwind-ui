@@ -1,7 +1,6 @@
 import cn from "@/utils/cn";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import Button from "../Button";
 import IconButton from "../icon-button";
 
 const ModalContext = createContext<{
@@ -13,18 +12,16 @@ function Modal({
   size = "md",
   children,
   outsideClick = true,
+  isOpen,
+  onClose,
 }: Readonly<{
   size?: "sm" | "md" | "lg";
   children: React.ReactNode;
   outsideClick?: boolean;
+  isOpen: boolean;
+  onClose: () => void;
 }>) {
-  const [isOpen, setIsOpen] = useState(false);
-
   const modalRef = useRef<HTMLDivElement>(null);
-
-  const onClose = () => {
-    setIsOpen(false);
-  };
 
   const sizeClass = {
     sm: "w-1/3 h-1/4",
@@ -39,7 +36,7 @@ function Modal({
       !modalRef.current.contains(event.target as Node) &&
       outsideClick
     ) {
-      setIsOpen(false);
+      onClose();
     }
   };
 
@@ -60,14 +57,6 @@ function Modal({
 
   return (
     <div>
-      <Button
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        Open
-      </Button>
-
       <ModalContext.Provider value={{ isOpen, onClose }}>
         <div
           className={cn(
