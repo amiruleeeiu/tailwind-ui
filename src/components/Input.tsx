@@ -1,19 +1,34 @@
-import { ClassAttributes, InputHTMLAttributes, JSX } from "react";
+import cn from "@/utils/cn";
+import { InputHTMLAttributes } from "react";
 
-function Input(
-  props: JSX.IntrinsicAttributes &
-    ClassAttributes<HTMLInputElement> &
-    InputHTMLAttributes<HTMLInputElement> & { label: string }
-) {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  inputSize?: "sm" | "md" | "lg";
+}
+
+function Input(props: Readonly<InputProps>) {
+  const { inputSize = "md", label, ...rest } = props;
+
+  const sizeClasses = {
+    lg: "px-4 py-3 text-xl",
+    md: "px-3 py-2",
+    sm: "px-3 py-1",
+  };
+
   return (
     <div>
-      <label htmlFor={props.name} className="text-gray-700 font-medium">
-        {props.label}
-      </label>
+      {label && (
+        <label htmlFor={props.name} className="text-gray-700 font-medium">
+          {label}
+        </label>
+      )}
       <input
         type="text"
-        className="my-2 border border-gray-300 py-2 px-3 rounded w-full outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 duration-300 font-normal text-gray-800"
-        {...props}
+        className={cn(
+          "my-2 border border-gray-300 py-2 px-3 rounded w-full outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 duration-300 font-normal text-gray-800",
+          sizeClasses[inputSize]
+        )}
+        {...rest}
       />
     </div>
   );

@@ -36,9 +36,21 @@ const data: DataType[] = [
     artist: "Earth, Wind & Fire",
     year: 1975,
   },
+  {
+    name: "Shining Star 2",
+    age: 21,
+    artist: "Earth, Wind & Fire",
+    year: 1975,
+  },
 ];
 
-function TableComponent() {
+function TableComponent({
+  striped = false,
+  pageable = false,
+}: {
+  readonly striped?: boolean;
+  readonly pageable?: boolean;
+}) {
   const [order, setOrder] = useState<string>("asc");
   const [strtedData, setStrtedData] = useState(data);
 
@@ -64,7 +76,7 @@ function TableComponent() {
   return (
     <>
       <TableContainer>
-        <Table>
+        <Table striped={striped}>
           <TableHead>
             <TableRow className="hover:bg-blue-50">
               <TableCell as="th">
@@ -85,7 +97,6 @@ function TableComponent() {
                 </button>
               </TableCell>
               <TableCell as="th">
-                {" "}
                 <button
                   onClick={() => {
                     setOrder(order === "asc" ? "desc" : "asc");
@@ -152,14 +163,16 @@ function TableComponent() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Pagination
-        limit={limit}
-        setLimit={setLimit}
-        count={100}
-        totalPages={Math.ceil(100 / Number(limit))}
-        currentPage={page}
-        onPageChange={onPageChange}
-      />
+      {pageable && (
+        <Pagination
+          limit={limit}
+          setLimit={setLimit}
+          count={100}
+          totalPages={Math.ceil(100 / Number(limit))}
+          currentPage={page}
+          onPageChange={onPageChange}
+        />
+      )}
     </>
   );
 }

@@ -1,3 +1,5 @@
+import Heading from "./Heading";
+
 interface BaseProps {
   children: React.ReactNode;
   className?: string;
@@ -19,7 +21,7 @@ const Card: CardComponent = ({ children, className = "" }) => {
   );
 };
 
-function CardHeader({ children, className = "" }: BaseProps) {
+function CardHeader({ children, className = "" }: Readonly<BaseProps>) {
   return (
     <div className={`p-4 border-b border-gray-200 ${className}`}>
       {children}
@@ -29,20 +31,16 @@ function CardHeader({ children, className = "" }: BaseProps) {
 Card.Header = CardHeader;
 
 const CardTitle = ({ children, className = "" }: BaseProps) => {
-  return (
-    <h3 className={`text-xl font-semibold text-gray-800 ${className}`}>
-      {children}
-    </h3>
-  );
+  return <Heading className={` ${className}`}>{children}</Heading>;
 };
 
-Card.Title=CardTitle
+Card.Title = CardTitle;
 
 const CardBody = ({ children, className = "" }: BaseProps) => {
   return <div className={`p-4 ${className}`}>{children}</div>;
 };
 
-Card.Body=CardBody
+Card.Body = CardBody;
 
 const CardFooter = ({ children, className = "" }: BaseProps) => {
   return (
@@ -52,6 +50,6 @@ const CardFooter = ({ children, className = "" }: BaseProps) => {
   );
 };
 
-Card.Footer=CardFooter
+Card.Footer = CardFooter;
 // Usage Example Component
 export default Card;

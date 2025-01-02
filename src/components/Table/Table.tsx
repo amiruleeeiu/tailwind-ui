@@ -1,17 +1,27 @@
 import cn from "@/utils/cn";
 import React from "react";
 
-function Table(props: Readonly<React.HTMLAttributes<HTMLTableElement>>) {
+const TableContext = React.createContext({ striped: false });
+
+function Table(
+  props: Readonly<React.HTMLAttributes<HTMLTableElement>> & {
+    striped?: boolean;
+  }
+) {
+  const { striped, className, children, ...rest } = props;
+
   return (
-    <table
-      className={cn(
-        "w-full border-collapse rounded bg-white shadow",
-        props.className
-      )}
-      {...props}
-    >
-      {props.children}
-    </table>
+    <TableContext.Provider value={{ striped: striped ?? false }}>
+      <table
+        className={cn(
+          "w-full border-collapse rounded bg-white shadow",
+          className
+        )}
+        {...rest} // Pass only the remaining props
+      >
+        {children}
+      </table>
+    </TableContext.Provider>
   );
 }
 
@@ -22,10 +32,7 @@ export function TableContainer(
 ) {
   return (
     <div
-      className={cn(
-        "min-w-auto overflow-x-auto bg-gray-100",
-        props.className
-      )}
+      className={cn("min-w-auto overflow-x-auto bg-gray-100", props.className)}
       {...props}
     >
       {props.children}
@@ -64,8 +71,19 @@ export const TableBody = (props: React.HTMLAttributes<HTMLTableElement>) => {
 };
 
 export const TableRow = (props: React.HTMLAttributes<HTMLTableRowElement>) => {
+  const { striped } = React.useContext(TableContext);
   return (
-    <tr className={cn("hover:bg-gray-50 border-b", props.className)} {...props}>
+    <tr
+      className={cn(
+        {
+          "even:bg-gray-100": striped,
+          "hover:bg-gray-100 hover:border-transparent duration-300 border-b":
+            !striped,
+        },
+        props.className
+      )}
+      {...props}
+    >
       {props.children}
     </tr>
   );

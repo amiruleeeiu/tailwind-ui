@@ -9,6 +9,7 @@ import Button from "@/components/Button";
 import Card from "@/components/card";
 import Checkbox from "@/components/Checkbox";
 import Dropdown from "@/components/dropdown";
+import Heading from "@/components/Heading";
 import IconButton from "@/components/icon-button";
 import Input from "@/components/Input";
 import ModalComponent from "@/components/ModalComponent";
@@ -20,6 +21,7 @@ import SmallModal from "@/components/SmallModal";
 import Spinner from "@/components/Spinner";
 import TableComponent from "@/components/Table/TableComponent";
 import Tabs from "@/components/tabs";
+import Text from "@/components/Text";
 import Toast from "@/components/Toast";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
@@ -73,13 +75,14 @@ export default function Home() {
 
   return (
     <div className="p-12 bg-gray-100">
-      <div className="grid grid-cols-3 gap-4">
-        <Card className="col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <Card>
           <Card.Header>
             <Card.Title>Input fields</Card.Title>
           </Card.Header>
           <Card.Body>
-            <Input label="Input" placeholder="Input field" />
+            <Input label="Input " placeholder="Input field" inputSize="lg" />
+            <Input placeholder="Input field" />
           </Card.Body>
         </Card>
         <Card>
@@ -96,23 +99,33 @@ export default function Home() {
           </Card.Body>
         </Card>
         <Card>
-          <Card.Header>
-            <Card.Title>Toast</Card.Title>
-          </Card.Header>
           <Card.Body>
-            <div className="flex flex-wrap space-x-2">
-              <Checkbox label="Phone" name="phone" />
-              <Checkbox label="Email" name="email" />
-
-              <div>
-                <RadioGroup
-                  options={[
-                    { label: "Yes", value: "yes" },
-                    { label: "No", value: "no" },
-                  ]}
-                />
-              </div>
-            </div>
+            <Card>
+              <Card.Header>
+                <Card.Title>Checkbox</Card.Title>
+              </Card.Header>
+              <Card.Body>
+                <div className="flex flex-col jus">
+                  <Checkbox label="Phone" name="phone" className="mb-2" />
+                  <Checkbox label="Email" name="email" />
+                </div>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Header>
+                <Card.Title>Radio Group</Card.Title>
+              </Card.Header>
+              <Card.Body>
+                <div className="flex flex-col jus">
+                  <RadioGroup
+                    options={[
+                      { label: "Yes", value: "yes" },
+                      { label: "No", value: "no" },
+                    ]}
+                  />
+                </div>
+              </Card.Body>
+            </Card>
           </Card.Body>
         </Card>
         <Card>
@@ -128,6 +141,37 @@ export default function Home() {
             />
           </Card.Body>
         </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Typography</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Heading size="xs">Heading (xs)</Heading>
+            <Heading size="sm" color="primary">
+              Heading (sm)
+            </Heading>
+            <Heading size="md" color="danger">
+              Heading (md)
+            </Heading>
+            <Heading>Heading (lg)</Heading>
+            <Heading size="xl" color="success">
+              Heading (xl)
+            </Heading>
+            <Heading size="2xl">Heading (2xl)</Heading>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Paragraph</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Text size="xs">Text (xs)</Text>
+            <Text size="sm">Text (sm)</Text>
+            <Text size="md">Text (md)</Text>
+            <Text size="lg">Text (lg)</Text>
+            <Text size="xl">Text (xl)</Text>
+          </Card.Body>
+        </Card>
 
         <Card>
           <Card.Header>
@@ -136,7 +180,7 @@ export default function Home() {
           <Card.Body className="flex flex-wrap gap-2">
             <ModalComponent>Open</ModalComponent>
             <ModalComponent outsideClick>Outside Close</ModalComponent>
-            <SmallModal/>
+            <SmallModal />
             <ModalComponent size="sm">sm</ModalComponent>
             <ModalComponent size="md">md</ModalComponent>
             <ModalComponent size="lg">lg</ModalComponent>
@@ -178,8 +222,31 @@ export default function Home() {
           <Card.Header>
             <Card.Title>Table</Card.Title>
           </Card.Header>
-          <Card.Body className="">
-            <TableComponent />
+          <Card.Body className="flex flex-col gap-4">
+            <Card>
+              <Card.Header>
+                <Card.Title>Default</Card.Title>
+              </Card.Header>
+              <Card.Body className="flex flex-col gap-4">
+                <TableComponent />
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Header>
+                <Card.Title>Pageable</Card.Title>
+              </Card.Header>
+              <Card.Body className="flex flex-col gap-4">
+                <TableComponent pageable />
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Header>
+                <Card.Title>Striped</Card.Title>
+              </Card.Header>
+              <Card.Body className="flex flex-col gap-4">
+                <TableComponent striped />
+              </Card.Body>
+            </Card>
           </Card.Body>
         </Card>
         <Card>
@@ -339,4 +406,29 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+{
+  /* <div
+  class="embed-responsive embed-responsive-16by9"
+  style="position: relative;padding-bottom: 56.25% !important;"
+>
+  <iframe
+    width="640"
+    height="360"
+    style="max-width: 100%;max-height: 100%; border:none;position: absolute;top: 0;left: 0;width: 100%; height: 100%;"
+    src="https://vgallery.oss.net.bd/videoEmbed/277/revolutionize-your-business-with-queue-pro-s-automated-kiosk?channelName=_64fb5b5f5c995&modestbranding=1&showinfo=1&autoplay=&controls=1&loop=&mute=&t=0&objectFit="
+    frameborder="0"
+    allow="fullscreen;autoplay;camera *;microphone *;"
+    allowfullscreen="allowfullscreen"
+    mozallowfullscreen="mozallowfullscreen"
+    msallowfullscreen="msallowfullscreen"
+    oallowfullscreen="oallowfullscreen"
+    webkitallowfullscreen="webkitallowfullscreen"
+    scrolling="no"
+    videoLengthInSeconds="15"
+  >
+    iFrame is not supported!
+  </iframe>
+</div>; */
 }

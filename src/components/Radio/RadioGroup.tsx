@@ -30,7 +30,7 @@ function RadioGroup(
             <button
               onClick={() => setChecked(option.value)}
               className={cn(
-                "h-4 w-4 p-[2px] border border-gray-300 rounded-full flex items-center justify-center focus:outline-none",
+                "h-5 w-5 p-[2px] border-2 border-gray-400 rounded-full flex items-center justify-center focus:outline-none",
                 { "border-blue-600": isActive }
               )}
             >
