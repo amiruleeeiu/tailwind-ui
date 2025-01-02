@@ -82,7 +82,7 @@ export default function Home() {
   };
 
   return (
-    <div className="p-12 bg-gray-100">
+    <div className="p-2 lg:p-12 bg-gray-100">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card>
           <Card.Header>
@@ -213,7 +213,7 @@ export default function Home() {
             <Card.Title>Toast</Card.Title>
           </Card.Header>
           <Card.Body>
-            <div className="flex flex-wrap space-x-2">
+            <div className="flex flex-wrap gap-2">
               <Toast />
               <Toast type="error" />
               <Toast type="warning" />
@@ -228,10 +228,8 @@ export default function Home() {
             <Popover />
           </Card.Body>
         </Card>
-      </div>
 
-      <div className="grid grid-cols-1 gap-4 mt-4">
-        <Card>
+        <Card className="lg:col-span-3">
           <Card.Header>
             <Card.Title>Table</Card.Title>
           </Card.Header>
@@ -262,37 +260,34 @@ export default function Home() {
             </Card>
           </Card.Body>
         </Card>
-        <Card>
+        <Card className="col-span-1 lg:col-span-3">
           <Card.Header>
             <Card.Title>Accordion</Card.Title>
           </Card.Header>
           <Card.Body>
-            <div className="grid grid-cols-1 gap-2">
-              <Accordion defaultValue={["1"]}>
-                {accordionItems.map((item) => (
-                  <AccordionItem key={item?.value} value={item.value}>
-                    <AccordionItemTrigger>{item.title}</AccordionItemTrigger>
-                    <AccordionItemContent>{item.content}</AccordionItemContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-            <div className="grid grid-cols-1 gap-2">
-              <h1 className="my-5">Collapsable</h1>
-              <Accordion defaultValue={[]} collapsable>
-                {accordionItems.map((item) => (
-                  <AccordionItem key={item?.value} value={item.value}>
-                    <AccordionItemTrigger
-                      disabled={item.disabled}
-                      rightIcon={<MdOutlineArrowForwardIos />}
-                    >
-                      {item.title}
-                    </AccordionItemTrigger>
-                    <AccordionItemContent>{item.content}</AccordionItemContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+            <Accordion defaultValue={["1"]}>
+              {accordionItems.map((item) => (
+                <AccordionItem key={item?.value} value={item.value}>
+                  <AccordionItemTrigger>{item.title}</AccordionItemTrigger>
+                  <AccordionItemContent>{item.content}</AccordionItemContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            <h1 className="my-5">Collapsable</h1>
+            <Accordion defaultValue={[]} collapsable>
+              {accordionItems.map((item) => (
+                <AccordionItem key={item?.value} value={item.value}>
+                  <AccordionItemTrigger
+                    disabled={item.disabled}
+                    rightIcon={<MdOutlineArrowForwardIos />}
+                  >
+                    {item.title}
+                  </AccordionItemTrigger>
+                  <AccordionItemContent>{item.content}</AccordionItemContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </Card.Body>
         </Card>
         <Card>
@@ -306,65 +301,57 @@ export default function Home() {
 
         <Card>
           <Card.Header>
-            <Card.Title>Button</Card.Title>
+            <Card.Title>Default</Card.Title>
           </Card.Header>
           <Card.Body>
-            <div className="grid grid-cols-4 gap-4">
-              <Card>
-                <Card.Header>
-                  <Card.Title>Default</Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <div className="flex flex-wrap space-2 gap-3">
-                    <Button color="default">Default</Button>
-                    <Button>Primary</Button>
-                    <Button color="error">Error</Button>
-                    <Button color="success">Success</Button>
-                    <Button color="warning">Warning</Button>
-                  </div>
-                </Card.Body>
-              </Card>
-              <Card>
-                <Card.Header>
-                  <Card.Title>Disabled</Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <div className="flex flex-wrap space-x-2">
-                    <Button disabled>Disabled</Button>
-                  </div>
-                </Card.Body>
-              </Card>
-              <Card>
-                <Card.Header>
-                  <Card.Title>Loading</Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <div className="flex flex-wrap space-x-2">
-                    <Button isLoading loadingText="Submitting...">
-                      Submit
-                    </Button>
-                    <Button isLoading={false}>Submit</Button>
-                  </div>
-                </Card.Body>
-              </Card>
-              <Card>
-                <Card.Header>
-                  <Card.Title>Custom Tailwind Class</Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <div className="flex flex-wrap space-x-2">
-                    <Button className="border-2 border-blue-300 bg-white hover:bg-blue-500 hover:text-white hover:border-none-2 hover:border-transparent text-gray-700">
-                      Submit
-                    </Button>
-                    <Button className="bg-violet-600 hover:bg-violet-700">
-                      Submit
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
+            <div className="flex flex-wrap gap-3">
+              <Button color="default">Default</Button>
+              <Button>Primary</Button>
+              <Button color="error">Error</Button>
+              <Button color="success">Success</Button>
+              <Button color="warning">Warning</Button>
             </div>
           </Card.Body>
         </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Disabled</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="flex flex-wrap space-x-2">
+              <Button disabled>Disabled</Button>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Loading</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="flex flex-wrap space-x-2">
+              <Button isLoading loadingText="Submitting...">
+                Submit
+              </Button>
+              <Button isLoading={false}>Submit</Button>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title>Custom Tailwind Class</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="flex flex-wrap space-x-2">
+              <Button className="border-2 border-blue-300 bg-white hover:bg-blue-500 hover:text-white hover:border-none-2 hover:border-transparent text-gray-700">
+                Submit
+              </Button>
+              <Button className="bg-violet-600 hover:bg-violet-700">
+                Submit
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+
         <Card>
           <Card.Header>
             <Card.Title>Icon Button</Card.Title>
@@ -385,7 +372,7 @@ export default function Home() {
             <Card.Title>Badge</Card.Title>
           </Card.Header>
           <Card.Body>
-            <div className="flex flex-wrap space-x-2">
+            <div className="flex flex-wrap gap-2">
               <Badge>Active</Badge>
               <Badge color="success">Active</Badge>
               <Badge color="error">Inactive</Badge>
