@@ -10,7 +10,7 @@ function IconButton(
     <button
       {...props}
       className={cn(
-        `flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 duration-300`,
+        `flex items-center justify-center p-2 rounded-full bg-gray-100 hover:bg-gray-200 duration-300`,
         props.disabled && "opacity-50 cursor-not-allowed",
         props.className
       )}

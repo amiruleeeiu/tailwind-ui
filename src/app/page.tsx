@@ -4,6 +4,7 @@ import Accordion from "@/components/Accordion/Accordion";
 import AccordionItem from "@/components/Accordion/AccordionItem";
 import AccordionItemContent from "@/components/Accordion/AccordionItemContent";
 import AccordionItemTrigger from "@/components/Accordion/AccordionItemTrigger";
+import Autocomplete, { Option } from "@/components/Autocomplete/Autocomplete";
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import Card from "@/components/card";
@@ -54,6 +55,13 @@ const accordionItems = [
     title: "Accordion Item 3",
     content: "Accordion Item 3 Content",
   },
+];
+
+const options: Option[] = [
+  { label: "Amirul", value: "option1" },
+  { label: "Shohag", value: "option2" },
+  { label: "Imran", value: "option3" },
+  { label: "Shohan", value: "option4" },
 ];
 
 export default function Home() {
@@ -138,6 +146,11 @@ export default function Home() {
               value={selectedValue}
               onChange={setSelectedValue}
               placeholder="Select items per page"
+            />
+            <Autocomplete
+              placeholder="Select Option"
+              clearable
+              options={options}
             />
           </Card.Body>
         </Card>
@@ -406,29 +419,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
-
-{
-  /* <div
-  class="embed-responsive embed-responsive-16by9"
-  style="position: relative;padding-bottom: 56.25% !important;"
->
-  <iframe
-    width="640"
-    height="360"
-    style="max-width: 100%;max-height: 100%; border:none;position: absolute;top: 0;left: 0;width: 100%; height: 100%;"
-    src="https://vgallery.oss.net.bd/videoEmbed/277/revolutionize-your-business-with-queue-pro-s-automated-kiosk?channelName=_64fb5b5f5c995&modestbranding=1&showinfo=1&autoplay=&controls=1&loop=&mute=&t=0&objectFit="
-    frameborder="0"
-    allow="fullscreen;autoplay;camera *;microphone *;"
-    allowfullscreen="allowfullscreen"
-    mozallowfullscreen="mozallowfullscreen"
-    msallowfullscreen="msallowfullscreen"
-    oallowfullscreen="oallowfullscreen"
-    webkitallowfullscreen="webkitallowfullscreen"
-    scrolling="no"
-    videoLengthInSeconds="15"
-  >
-    iFrame is not supported!
-  </iframe>
-</div>; */
 }
